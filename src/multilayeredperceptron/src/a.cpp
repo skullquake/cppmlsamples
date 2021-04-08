@@ -1,5 +1,6 @@
 #include<iostream>
 #include"ml/perceptron.hpp"
+#include"ml/multilayerperceptron.hpp"
 int main(void){
 	{//AND
 		ml::Perceptron p(2);
@@ -46,5 +47,16 @@ int main(void){
 		std::cout<<run(0,1)<<std::endl;//1	<-	0.992356
 		std::cout<<run(1,0)<<std::endl;//1	<-	0.992356
 		std::cout<<run(1,1)<<std::endl;//0	<-	0.00715281
+	}
+
+	{//XOR - multilayer
+		std::cout<<"XOR Gate[multilayer]:"<<std::endl;
+		auto mlp=ml::MultilayerPerceptron({2,2,1});
+		mlp.set_weights({{{-10,-10,15},{15,15,-10}},{{10,10,-15}}});
+		mlp.print_weights();
+		std::cout<<mlp.run({0,0})[0]<<std::endl;//0	<-	0.00669585
+		std::cout<<mlp.run({0,1})[0]<<std::endl;//1	<-	0.992356
+		std::cout<<mlp.run({1,0})[0]<<std::endl;//1	<-	0.992356
+		std::cout<<mlp.run({1,1})[0]<<std::endl;//0	<-	0.00715281
 	}
 }

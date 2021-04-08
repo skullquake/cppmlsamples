@@ -7,7 +7,7 @@
 static std::random_device rd;
 static std::mt19937 mt(rd());
 static std::uniform_real_distribution<>dist(-1,1);
-double frand(){
+static double frand(){
 	return dist(mt);
 }
 namespace ml{
